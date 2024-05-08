@@ -1,0 +1,2 @@
+MONGO_DB_DSN=mongodb://127.0.0.1/statuses
+PORT=3000

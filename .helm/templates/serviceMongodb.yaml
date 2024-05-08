@@ -1,0 +1,16 @@
+{{- if not .Values.externalMongoDB.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "status-service.fullname" . }}-mongodb-service
+  #labels:
+spec:
+  type: ClusterIP
+  ports:
+    - port: 27017
+      targetPort: tcp
+      protocol: TCP
+      name: tcp
+  selector:
+    app: {{ include "status-service.fullname" . }}-mongodb
+{{- end -}}
