@@ -124,15 +124,19 @@ The garbage collector automatically deletes outdated data, by default the number
 
 ### How to install?
 
-1. Clone this repository
-2. Install using helm
+1. Add repo
    ```bash
-   helm upgrade --install -f .helm/values.yaml status .helm -n status --create-namespace --set "ingress.hosts[0].host=example\.ru"
+    helm repo add status https://cas-class.github.io/status-service
+   ```
+3. Install using helm
+   ```bash
+   helm upgrade --install -f values.yaml status status/status-service -n status --create-namespace
    ```
 ### Roadmap
 
-- [ ] Public availability through Github Pages
-- [ ] Automatic deployment through Github Actions
+- [X] Public availability through Github Pages
+- [X] Automatic deployment through Github Actions
+- [ ] Automatic docker build through Github Actions
 - [ ] Public UI
 - [ ] Exporting data to Prometheus
 - [ ] Dashboard for Grafana
