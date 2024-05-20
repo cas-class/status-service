@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  status-service:
+  - apiVersion: v2
+    appVersion: 0.1.4
+    created: "2024-05-20T08:54:43.979353407Z"
+    description: "The status service adds resources to track the availability of services
+      and resources for grouping them. \nThis application helps to track the status
+      of services in k8s using only the kube API. \nThe application is designed to
+      make it easier to create a status page for your product"
+    digest: 338bdd8b5d4127d2a8a4aca4e7de903261129714a3af71a886db76417dd42d75
+    name: status-service
+    type: application
+    urls:
+    - https://cas-class.github.io/status-service/status-service-0.1.4.tgz
+    version: 0.1.4
+generated: "2024-05-20T08:54:43.978429539Z"
