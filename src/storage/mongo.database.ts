@@ -204,10 +204,14 @@ export class MongoDB extends DataBase<string, mongoose.Mongoose> {
   public async getHistoryStateByDay(uuidWatchRecord: string, date: Date): Promise<IHistoryStateItem[]> {
     await this.getConnection();
 
+    //TODO: Разобраться с часовыми поясами и переделать реализацию
+
+    const stopTime = new Date(date.getTime() + 86_400_000 - date.getTimezoneOffset() * 60 * 1000 * -1);
+
     const data = await this.statusServicesModel.find({
       time: {
-        $gte: date,
-        $lt: new Date(date.getTime() + 86_400_000)
+        $gte: new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000 * -1),
+        $lt: stopTime
       },
       uuidWatchRecord
     }).sort({
@@ -253,7 +257,7 @@ export class MongoDB extends DataBase<string, mongoose.Mongoose> {
     }
     if (currentItem !== null) {
       if (currentItem.stopTime.getTime() === 0) {
-        currentItem.stopTime = new Date();
+        currentItem.stopTime = stopTime;
       }
       retObject.push(currentItem);
     }
